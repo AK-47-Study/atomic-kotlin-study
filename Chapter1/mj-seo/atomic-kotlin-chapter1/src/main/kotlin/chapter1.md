@@ -59,7 +59,7 @@
 
 ```kotlin
 fun main() {
-	println("Hello, world!")
+   println("Hello, world!")
 }
 ```
 
@@ -78,7 +78,7 @@ fun main() {
 
 ```kotlin
 fun main() {
-	var sum = 0
+  var sum = 0
   sum += 2
   sum += 3
 
@@ -94,7 +94,7 @@ fun main() {
 
 ```kotlin
 fun main() {
-	var name = "Sally"
+  var name = "Sally"
   println(name * 5.9) // 에러 -> 문자열에 대한 숫자 곱셈은 코틀린이 이해할 수 없다!
   println(name + 5.9) // 가능 -> 문자열에 5.9를 문자열로 더해서 Sally5.9가 출력된다.
 }
@@ -107,7 +107,7 @@ Kotlin에서는 `타입`을 명시적으로 지정해주지 않아도, 각 값�
 ```kotlin
 fun main() {
   // 명시적으로 변수의 타입을 선언하는 방법이다.
-	var name: String = "Sally"
+  var name: String = "Sally"
 
   // 명시적으로 타입을 선언하지 않아도, 타입 추론을 통해 String 타입을 추론하는 방법이다.
   var name = "Sally"
@@ -120,19 +120,19 @@ fun main() {
 
 ```kotlin
 fun 함수이름(p1: 타입1, p2: 타입2, ...): 반환타입 {
-	여러 줄의 코드 .. (함수 본문)
+  여러 줄의 코드 .. (함수 본문)
   return 결과
 }
 ```
 
 ```kotlin
 fun multiplyByTwo(x: Int): Int {
-	println("Inside multiplyByTwo")
+  println("Inside multiplyByTwo")
   return x * 2
 }
 
 fun main() {
-	val r = multiplyByTwo(5)
+  val r = multiplyByTwo(5)
   println(r)
 }
 
@@ -145,17 +145,17 @@ fun main() {
 ```kotlin
 // Unit을 명시하지 않음
 fun sayHello() {
-	println("Hallo!")
+   println("Hallo!")
 }
 
 // 반환타입 Unit을 명시
 fun sayGoodBye(): Unit {
-	println("Auf Wiedersehen!")
+   println("Auf Wiedersehen!")
 }
 
 fun main() {
-	sayHello()
-	sayGoodbye()
+  sayHello()
+  sayGoodbye()
 }
 ```
 
@@ -166,7 +166,7 @@ fun main() {
 ```kotlin
 // 블록 본문을 사용한 함수
 fun multiplyByThree(x: Int): Int {
-	return x * 3
+   return x * 3
 }
 
 // 식 본문을 사용
@@ -189,9 +189,9 @@ fun main() {
   val n: Int = -11
 
   if (n > 0)
-		println("It's Positive")
+     println("It's Positive")
   else 
-		println("It's negative or zero")
+     println("It's negative or zero")
 }
 ```
 
@@ -201,9 +201,9 @@ fun main() {
 ```kotlin
 fun oneOrTheOther(exp: Boolean): String = 
 if (exp)
-	"True"
+  "True"
 else
-	"False"
+  "False"
 ```
 
 - `if 식`을 이용해 결과를 만들어 낼 수도 있다.
