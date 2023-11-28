@@ -1,4 +1,4 @@
-
+package DataTypes
 fun main() {
     /*
     *  타입을 섞어서 사용한 경우에도 코틀린은

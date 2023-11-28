@@ -1,4 +1,4 @@
-
+package VarAndVal
 fun main() {
     val whole = 11
     // val로 선언된 변수는 재대입 불가

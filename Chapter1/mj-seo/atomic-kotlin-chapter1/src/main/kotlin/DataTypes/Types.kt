@@ -1,4 +1,4 @@
-
+package DataTypes
 fun main() {
     val whole: Int = 11
     val fractional: Double = 1.4

@@ -1,4 +1,4 @@
-
+package VarAndVal
 fun main() {
     /*
     *  var는 변할 수 있는 수(variable)의 약자로, 내용을 재대입 할 수 있다.
