@@ -1,3 +1,5 @@
+package VarAndVal
+
 fun main() {
     var whole = 11
     var fractional = 1.4

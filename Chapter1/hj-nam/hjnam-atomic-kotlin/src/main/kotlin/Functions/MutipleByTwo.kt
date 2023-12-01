@@ -1,3 +1,5 @@
+package Functions
+
 fun multipleByTwo(x: Int): Int {
     println("Inside multipleByTwo")
     return x * 2

@@ -1,3 +1,5 @@
+package VarAndVal
+
 fun main() {
     var sum = 1
     sum = sum + 2

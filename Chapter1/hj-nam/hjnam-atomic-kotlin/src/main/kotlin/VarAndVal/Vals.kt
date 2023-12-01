@@ -1,3 +1,5 @@
+package VarAndVal
+
 fun main() {
     val whole = 11
     // whole = 15 // 오류
