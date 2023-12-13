@@ -25,7 +25,7 @@ fun main() {
     // 교집합
     intSet intersect setOf(0, 1, 2, 7, 8) eq setOf(1, 2)
 
-    // 차집합
+    // 차집합 -> 차집합 연산은 subtract() 함수나 뺄셈 연산자(-)로 표현할 수 있다.
     intSet subtract setOf(0, 1, 9, 10) eq setOf(2, 3, 4)
     intSet - setOf(0, 1, 9, 10) eq setOf(2, 3, 4)
 }
