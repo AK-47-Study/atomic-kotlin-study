@@ -1,4 +1,4 @@
-package Chapter2.`kh-cho`.`khcho-study`.src.main.kotlin.Properties
+package Chapter2.`kh-cho`.`khcho-study`.src.main.kotlin.`Properties2-3`
 
 class Cup2 {
     var percentFull = 0

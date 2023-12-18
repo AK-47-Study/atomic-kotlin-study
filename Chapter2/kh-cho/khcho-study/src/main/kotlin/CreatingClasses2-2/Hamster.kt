@@ -1,4 +1,4 @@
-package Chapter2.`kh-cho`.`khcho-study`.src.main.kotlin.CreatingClasses
+package Chapter2.`kh-cho`.`khcho-study`.src.main.kotlin.`CreatingClasses2-2`
 
 class Hamster {
     fun speak() = "Squeak"

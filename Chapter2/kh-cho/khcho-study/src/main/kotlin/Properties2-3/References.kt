@@ -1,4 +1,4 @@
-package Chapter2.`kh-cho`.`khcho-study`.src.main.kotlin.Properties
+package Chapter2.`kh-cho`.`khcho-study`.src.main.kotlin.`Properties2-3`
 
 class Kitchen{
     var table: String = "Round table"
