@@ -1,6 +1,6 @@
 package memberreferences
 
-import atomictest.eq
+import Test.eq
 
 
 fun Int.times47() = times(47)

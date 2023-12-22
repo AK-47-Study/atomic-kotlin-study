@@ -1,4 +1,4 @@
-import atomictest.trace
+import Test.trace
 
 
 fun main() {

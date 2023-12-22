@@ -1,6 +1,6 @@
 package higherorderfunctions
 
-import atomictest.eq
+import Test.eq
 
 
 val helloWorld: () -> String =

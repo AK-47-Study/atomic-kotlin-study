@@ -1,6 +1,6 @@
 package memberreferences1
 
-import atomictest.eq
+import Test.eq
 
 
 data class Message(

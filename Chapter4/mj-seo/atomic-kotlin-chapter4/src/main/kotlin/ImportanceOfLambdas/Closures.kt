@@ -1,5 +1,4 @@
-import atomictest.eq
-
+import Test.eq
 
 fun main() {
     val list = listOf(1, 5, 7, 10)

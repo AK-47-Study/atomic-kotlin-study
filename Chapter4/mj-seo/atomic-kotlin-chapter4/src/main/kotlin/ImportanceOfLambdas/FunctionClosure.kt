@@ -1,6 +1,6 @@
 package importanceoflambdas
 
-import atomictest.eq
+import Test.eq
 
 
 var x = 100

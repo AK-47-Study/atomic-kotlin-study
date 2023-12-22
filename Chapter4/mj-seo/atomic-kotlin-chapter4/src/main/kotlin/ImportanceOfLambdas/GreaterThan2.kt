@@ -1,6 +1,6 @@
 package importanceoflambdas
 
-import atomictest.eq
+import Test.eq
 
 
 fun greaterThan2(nums: List<Int>): List<Int> {

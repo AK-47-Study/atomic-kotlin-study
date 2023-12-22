@@ -1,5 +1,5 @@
 package memberreferences3
-import atomictest.eq
+import Test.eq
 
 
 data class Student(

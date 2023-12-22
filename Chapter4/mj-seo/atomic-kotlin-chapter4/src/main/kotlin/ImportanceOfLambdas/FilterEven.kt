@@ -1,5 +1,5 @@
 package importanceoflambdas
-import atomictest.eq
+import Test.eq
 
 
 fun filterEven(nums: List<Int>): List<Int> {

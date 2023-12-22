@@ -1,6 +1,6 @@
 package memberreferences2
 
-import atomictest.eq
+import Test.eq
 
 
 fun ignore(message: Message) =
