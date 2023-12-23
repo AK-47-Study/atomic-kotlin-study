@@ -37,3 +37,9 @@ O
 ImportanceOfLambdas/Closures.kt,2/a/2aafb3b0e8f6ef10174109332d4a6783c396d108
 S
 #HigherOrderFunctions/RepeatByInt.kt,e/6/e63fd05b16b5ca50634d124903b3d13a4333c164
+N
+HigherOrderFunctions/Repeat.kt,5/d/5dc049f4cd736d632d6816ff92bf6a2769ee8565
+V
+&HigherOrderFunctions/NullableReturn.kt,4/7/4714116737dcece7c61cb7604393049246a3d7f4
+X
+(HigherOrderFunctions/NullableFunction.kt,0/5/051293391013c298c6354776190c4e580e398833
