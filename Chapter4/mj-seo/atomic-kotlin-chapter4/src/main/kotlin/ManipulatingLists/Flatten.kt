@@ -1,0 +1,4 @@
+package ManipulatingLists
+
+class Flatten {
+}
