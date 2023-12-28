@@ -1,5 +1,6 @@
 package Chapter2.`kh-cho`.`khcho-study`.src.main.kotlin.`Testing2-7`
 
+import atomictest.eq
 import atomictest. eq
 fun averagelncome(income: Int, months: Int)=
     if (months == 0)
