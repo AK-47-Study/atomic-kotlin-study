@@ -15,8 +15,6 @@ F
 BaseClassInit/House.kt,2/f/2fab641270399a23b32b5e98a7874ad3d7920169
 R
 "BaseClassInit/OtherConstructors.kt,3/7/3765c2746699fb9d2d540d58c5ae96183a97c6ce
-L
-Abstract/AbstractKeywored.kt,c/7/c7b4be81c5c44926b98c704a6efc7cdcb264b231
 K
 Abstract/AbstractKeyword.kt,5/a/5a25771fe2ce4f08c0a7a905f7228c862d80c186
 E
@@ -35,3 +33,23 @@ X
 (Abstract/MultipleInterfaceInheritance.kt,4/f/4ff73392795fa050c041a0a4ee8ecccca5989c43
 N
 Abstract/InterfaceCollision.kt,9/a/9af6ae7e687ab62f221a90c6d2c013c72ae17065
+C
+Upcasting/Shapes.kt,0/3/03d731cc51368269ae53abf75cb9950f7a5d35e0
+K
+Upcasting/TrimmedMembers.kt,8/a/8a463679d8b08ef8712a7233573981ee2f7315f3
+G
+Upcasting/Assignment.kt,6/f/6f84139a5835a20afcf8d4c22338963dd151fbcd
+C
+Polymorphism/Pet.kt,2/e/2ec15fe442c961d35d0a1d3f0bd07e9729a239a6
+K
+Polymorphism/FantasyGame.kt,9/b/9b30606d04d14593dee48391352a1025c87d9d79
+E
+Composition/House1.kt,9/2/92be964d5a0887379e251f4ee6a32372e3f3e27e
+E
+Composition/House2.kt,b/7/b7fc6f40eb0f1d5aa76d377a14ede41ebec633ab
+E
+Composition/House3.kt,0/3/03da0169ec44227c0f8a9b1804aa341f418c7a25
+H
+Composition/Embedding.kt,1/4/1404ab318594e32ee674431567c9480fc5c52c29
+B
+Composition/Car.kt,e/8/e806db6ec89bb4e6fbea1d9a9edfc74b19a86351
