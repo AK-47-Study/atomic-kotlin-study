@@ -1773,3 +1773,13 @@ QChapter3/kh-cho/khcho-study/src/main/kotlin/NamedAndDefaultArgs2/ArgumentOrder.
 QChapter3/kh-cho/khcho-study/src/main/kotlin/NamedAndDefaultArgs2/CreateString2.kt,c/c/cccbad73b873a73b53e5b600c2e096c4ba16aa78
 ‚
 RChapter3/kh-cho/khcho-study/src/main/kotlin/NamedAndDefaultArgs2/NamedArguments.kt,1/4/140c468b59c453f88835091b2a374f4815c45038
+r
+BChapter3/kh-cho/khcho-study/src/main/kotlin/Enumerations5/Level.kt,6/0/6076424c31056e1c6af9deded562d4496c040bf4
+w
+GChapter3/kh-cho/khcho-study/src/main/kotlin/Enumerations5/EnumImport.kt,2/4/24e08f69c2a39706b1c256fd38162976a62933de
+€
+PChapter3/kh-cho/khcho-study/src/main/kotlin/Enumerations5/RecursiveEnumImport.kt,1/e/1e4aa6a9edf98eed264d3c092b157a69d82dffcc
+|
+LChapter3/kh-cho/khcho-study/src/main/kotlin/Enumerations5/CheckingOptions.kt,a/a/aabda9e6ef42cdc39387cc13d1433e783db974c9
+v
+FChapter3/kh-cho/khcho-study/src/main/kotlin/Enumerations5/Direction.kt,6/b/6bb55bffc973969ee6e026dff33a669f12266e03
