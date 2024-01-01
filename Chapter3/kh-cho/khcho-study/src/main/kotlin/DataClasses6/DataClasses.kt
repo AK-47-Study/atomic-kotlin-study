@@ -1,4 +1,4 @@
-package Chapter3.`kh-cho`.`khcho-study`.src.main.kotlin.DataClasses
+package Chapter3.`kh-cho`.`khcho-study`.src.main.kotlin.DataClasses6
 
 import atomictest.eq
 import atomictest.neq
