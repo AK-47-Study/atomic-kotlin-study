@@ -1,4 +1,4 @@
-package Chapter3.`kh-cho`.`khcho-study`.src.main.kotlin.NamedAndDefaultArgs
+package Chapter3.`kh-cho`.`khcho-study`.src.main.kotlin.NamedAndDefaultArgs2
 
 import atomictest.eq
 

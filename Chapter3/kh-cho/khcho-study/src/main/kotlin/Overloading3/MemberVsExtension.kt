@@ -1,4 +1,4 @@
-package Chapter3.`kh-cho`.`khcho-study`.src.main.kotlin.Overloading
+package Chapter3.`kh-cho`.`khcho-study`.src.main.kotlin.Overloading3
 
 import atomictest.eq
 
