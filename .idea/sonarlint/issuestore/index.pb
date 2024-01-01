@@ -1715,3 +1715,15 @@ MChapter3/kh-cho/khcho-study/src/main/kotlin/NamedAndDefaultArgs/Evaluation.kt,
 PChapter3/kh-cho/khcho-study/src/main/kotlin/NamedAndDefaultArgs/CreateString2.kt,b/b/bb52fe7c1a2fd799d299e7d6a4ce97cce0f69f3a
 }
 MChapter3/kh-cho/khcho-study/src/main/kotlin/NamedAndDefaultArgs/TrimMargin.kt,8/8/88dd3756798e78195b4ad047df433cfad8607e26
+v
+FChapter3/kh-cho/khcho-study/src/main/kotlin/Overloading/Overloading.kt,8/b/8b1f6966f8cff11335e385e1cdef872d5e47145b
+|
+LChapter3/kh-cho/khcho-study/src/main/kotlin/Overloading/MemverVsExtension.kt,d/e/de2d4655d418600ceb570d9bba2db630aa614556
+|
+LChapter3/kh-cho/khcho-study/src/main/kotlin/Overloading/MemberVsExtension.kt,d/2/d273172eeb2e7d2f09d5fbf1baef52598eef7635
+‚
+RChapter3/kh-cho/khcho-study/src/main/kotlin/Overloading/WithoutDefaultArguments.kt,7/7/77e0aeb8c7aff7c1ca5a26630c43b35180250956
+€
+PChapter3/kh-cho/khcho-study/src/main/kotlin/Overloading/OverladedVsDefaultArg.kt,f/c/fc8e9eb8f3484672d492ae5c5d176fdc6810f4e7
+y
+IChapter3/kh-cho/khcho-study/src/main/kotlin/Overloading/OverloadingAdd.kt,6/9/699b696ef1e118a95d734d77edbb0ce53f7d4088
