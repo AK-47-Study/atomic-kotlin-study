@@ -1,4 +1,4 @@
-package Chapter3.`kh-cho`.`khcho-study`.src.main.kotlin.ExtensionProperties
+package Chapter3.`kh-cho`.`khcho-study`.src.main.kotlin.ExtensionProperties13
 
 import atomictest.eq
 
