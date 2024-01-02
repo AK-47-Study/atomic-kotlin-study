@@ -1801,3 +1801,9 @@ IChapter3/kh-cho/khcho-study/src/main/kotlin/IntroGenerics12/AnyInstead.kt,f/0/
 NChapter3/kh-cho/khcho-study/src/main/kotlin/IntroGenerics12/GenericFunction.kt,c/7/c75b3dcad72cef30ac873ee2ee6aa760679f2769
 Ñ
 TChapter3/kh-cho/khcho-study/src/main/kotlin/IntroGenerics12/GenericListExtensions.kt,d/5/d50e941544561763407e7090eab3995d5cf90923
+Ä
+PChapter3/kh-cho/khcho-study/src/main/kotlin/ExtensionProperties/StringIndices.kt,6/6/6668e4d912ad290e10f8ac2171077480aaae8f64
+Å
+QChapter3/kh-cho/khcho-study/src/main/kotlin/ExtensionProperties/GenericListExt.kt,0/d/0d0d8319030747611161ac522e0f9b10b7b0cdb2
+}
+MChapter3/kh-cho/khcho-study/src/main/kotlin/ExtensionProperties/ListOfStar.kt,2/5/256c05b942e48bc6b607e160d80b378aa71b57e0
