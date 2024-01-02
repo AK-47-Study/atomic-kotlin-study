@@ -1779,3 +1779,9 @@ NChapter3/kh-cho/khcho-study/src/main/kotlin/SafeCallsAndElvis9/ChainedCalls.kt
 PChapter3/kh-cho/khcho-study/src/main/kotlin/NonNullAssertions10/NonNullAssert.kt,2/f/2f45c90a81b3be5e21ea70d8d9823f1f098446da
 
 OChapter3/kh-cho/khcho-study/src/main/kotlin/NonNullAssertions10/ValueFromMap.kt,0/0/00d49ea53856a4b3b06613bbf2efd15ccf87ef28
+
+OChapter3/kh-cho/khcho-study/src/main/kotlin/NullableExtenstions/StringNullOr.kt,a/e/ae5259d02d20d9c6ea9ffdbe1cbab4c06f7f224a
+„
+TChapter3/kh-cho/khcho-study/src/main/kotlin/NullableExtenstions/NullableParameter.kt,1/6/162805c8402c6d2b5f8251bfaad74d8c60083c6a
+„
+TChapter3/kh-cho/khcho-study/src/main/kotlin/NullableExtenstions/NullableExtension.kt,0/7/070257e04bfb468d0e05e0307d0f175a6ab99aa2
