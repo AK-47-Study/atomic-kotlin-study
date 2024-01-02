@@ -1767,3 +1767,11 @@ IChapter3/kh-cho/khcho-study/src/main/kotlin/NullableTypes8/Dereference.kt,8/7/
 KChapter3/kh-cho/khcho-study/src/main/kotlin/NullableTypes8/ExplicitCheck.kt,7/8/78cd07ca785b5a6f6e766ef73cc77d706ad388c6
 w
 GChapter3/kh-cho/khcho-study/src/main/kotlin/NullableTypes8/Amphibian.kt,7/7/775702f8dc1fea55be0128c8f7f0eb82a845c9ca
+
+OChapter3/kh-cho/khcho-study/src/main/kotlin/SafeCallsAndElvis9/SafeOperation.kt,7/8/78a0fe040ba09aadf4c9901570f925bcb94b94d1
+z
+JChapter3/kh-cho/khcho-study/src/main/kotlin/SafeCallsAndElvis9/SafeCall.kt,7/e/7e10bb97092e436fae3c1ffc404393ddb66fc1fa
+
+OChapter3/kh-cho/khcho-study/src/main/kotlin/SafeCallsAndElvis9/ElvisOperator.kt,8/a/8ae6e9de78b47dcba261cbb665e2c712eabfdaa3
+~
+NChapter3/kh-cho/khcho-study/src/main/kotlin/SafeCallsAndElvis9/ChainedCalls.kt,9/e/9eec6f85b1bce48cf03d8bc49092e6a33064c521
