@@ -1775,3 +1775,7 @@ JChapter3/kh-cho/khcho-study/src/main/kotlin/SafeCallsAndElvis9/SafeCall.kt,7/e
 OChapter3/kh-cho/khcho-study/src/main/kotlin/SafeCallsAndElvis9/ElvisOperator.kt,8/a/8ae6e9de78b47dcba261cbb665e2c712eabfdaa3
 ~
 NChapter3/kh-cho/khcho-study/src/main/kotlin/SafeCallsAndElvis9/ChainedCalls.kt,9/e/9eec6f85b1bce48cf03d8bc49092e6a33064c521
+€
+PChapter3/kh-cho/khcho-study/src/main/kotlin/NonNullAssertions10/NonNullAssert.kt,2/f/2f45c90a81b3be5e21ea70d8d9823f1f098446da
+
+OChapter3/kh-cho/khcho-study/src/main/kotlin/NonNullAssertions10/ValueFromMap.kt,0/0/00d49ea53856a4b3b06613bbf2efd15ccf87ef28
