@@ -2055,3 +2055,5 @@ w
 G.idea/sonarlint/issuestore/3/7/373d6ccb5dbea802a4c121b355d5c8220cdaf813,9/5/9521e2610df06a79d3e244a4699de240b654e14e
 Å
 Q.idea/sonarlint/securityhotspotstore/3/7/373d6ccb5dbea802a4c121b355d5c8220cdaf813,9/e/9e1502d97fffa17d3bf2fd0ccb31d48dc0fec1fa
+|
+LChapter4/kh-cho/khcho-study/src/main/kotlin/ImportanceLambdas/FilterEvent.kt,c/f/cfd4a0eedb6b9a7225f52029dae6340db6188beb
