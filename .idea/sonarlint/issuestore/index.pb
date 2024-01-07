@@ -2623,3 +2623,17 @@ v
 FChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/TypeCheck3.kt,1/b/1ba555a199bf9c86682e6723de9c95f77cd2ee6d
 u
 EChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/ShapeImpl.kt,4/b/4b357abc7c6101f3ec0d6605394f043628f859c5
+t
+DChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/Airport.kt,1/5/15afef4dbe7333a96a0935e8c3cc9fd6c5c0f7bf
+x
+HChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/NestedHouse.kt,3/b/3bb0e0aed8f938d4d96d4ccbd3e65db4079fd2ca
+y
+IChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/LocalClasees.kt,9/5/95770f19f2741b60829f3fd36df5c3ff4a22517b
+x
+HChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/ReturnLocal.kt,a/1/a1bb5859ae3135cf9fe8663c97e4dcc878a9f373
+|
+LChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/WithinInterface.kt,8/9/8982722d09991b10001b55d556e2934ba2b8fc03
+s
+CChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/Ticket.kt,5/a/5ada84913a76d5fd0d7bd6c6b55741de9ad5a7b1
+r
+BChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/Fillt.kt,f/1/f1661cc1d283e9acf6062a9632063b79d78154d9
