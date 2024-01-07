@@ -2609,3 +2609,17 @@ MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedVsAbstarct.kt,
 MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedVsAbstract.kt,7/e/7e7c1d4668840452b677eb816faeac8ab764c7f6
 }
 MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedSubclasses.kt,d/f/df04f459e9ec5c64d89bfa1862b784b5a0811f92
+s
+CChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/Insects.kt,c/5/c5f908b71f8731880094c560dd9a8ef40bb34d4c
+s
+CChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/AnyName.kt,3/1/31439ff32a1af5dafda2a49e78b2cac7c00476da
+v
+FChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/TypeCheck1.kt,4/e/4eed63b3346f4bce98f90416f3c5e581d8c9e1e8
+v
+FChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/TypeCheck2.kt,1/a/1aa00e2cc8dc6fd331cc443f2890a84ff79b7c01
+}
+MChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/BeverageContainer.kt,8/9/894f24aa406db9106c49770b9dc0d04e944dc73c
+v
+FChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/TypeCheck3.kt,1/b/1ba555a199bf9c86682e6723de9c95f77cd2ee6d
+u
+EChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/ShapeImpl.kt,4/b/4b357abc7c6101f3ec0d6605394f043628f859c5
