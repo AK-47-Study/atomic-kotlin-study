@@ -684,3 +684,920 @@ fun main() {
     - `합성`은 가장 단순한 방법으로, 대부분의 `유스케이스 해결`이 가능하다.
     - `상속`은 `타입 계층`과 이 `계층에 속한 타입 사이의 관계`가 필요한 경우 상속이 필요하다.
     - 위의 `두 가지 선택`이 모두 적합하지 않다면, `위임`을 사용할 수 있다.
+    - 
+
+
+## 🧐 다운캐스트
+
+- `기반 클래스`가 `파생 클래스`보다 더 큰 인터페이스를 가질 수 없으므로 `업캐스트`는 항상 안전하다.
+- `다운캐스트`는 `실행 시점`에 일어나며, 실행 시점 `타입 식별` 이라고도 한다.
+    - `기반 타입`이 `파생 타입`보다 더 좁은 인터페이스를 제공하는 클래스 계층에서는 업캐스트 수행시,                 컴파일러는 `어떤 함수`를 `호출`하면 안전한지 결정할 수 없다.
+
+```kotlin
+interface Base {
+  fun f()
+}
+
+class Derived2: Base {
+  override fun f() {}
+  fun h() {}
+}
+
+fun main() {
+  val b1: Base = Derived1() // 업캐스트
+  b1.f() // 기반 클래스의 함수 호출
+  b1.g() // 기반 클래스에 없는 함수이므로 호출이 불가능!
+
+  val b2: Base = Derived2()
+  b2.f() // 기반 클래스의 함수 호출
+  b2.h() // 기반 클래스에 없는 함수는 호출 불가!
+}
+```
+
+- `Base` 인터페이스에 정의되지 않은 `h()`와 `g()`는 업캐스트시 안전하게 `호출`이 `불가능`하다.
+    - `잘못된 타입`으로 `다운캐스트`를 해서 존재하지 않는 멤버를 호출하지 않도록 `코틀린`은 스마트 캐스트 기능을 지원한다.
+
+## ☺️ 스마트 캐스트
+
+- `코틀린`의 `스마트 캐스트`는 자동 다운 캐스트이다.
+- `is 키워드`는 어떤 객체가 특정 타입인지 `검사`한다. 검사 영역 안에서는 해당 객체를 검사에 성공한 타입이라고 간주한다.
+
+```kotlin
+fun main () {
+  val b1: Base = Derived1() // 업캐스트
+  if (b1 is Dervied1) b1.g() // 'is' 검사의 영역 내부
+  
+  val b2: Base = Derived2() // 업캐스트
+  if (b2 is Dervied2) b2.h()
+}
+```
+
+- `b1`이 `Derived1` 타입이면 `g()`를 호출할 수 있다. `b2` 역시 `Derived2` 타입이라면 `h()`를 호출할 수 있다.
+- `스마트 캐스트`는 `is`를 통해 `when`의 인자가 어떤 타입인지 탐색하는 `when` 식 내부에서 유용하게 사용할 수 있다.
+
+```kotlin
+interface Creature
+
+class Human : Creature {
+  fun greeting() = "I'm Human"
+}
+
+class Dog : Creature {
+  fun bark() = "Yip!"
+}
+
+class Ailen : Creature {
+  fun mobility() = "Three legs"
+}
+
+fun what(c: Creture) = when (c) {
+  is Human -> c.greeting()
+  is Dog -> c.bark()
+  is Alien -> c.mobility
+  else -> "Something else"
+}
+```
+
+- `what()`은 이미 `업캐스트`된 `Creature`를 받아서 정확한 타입을 찾는다.
+- `Creatrue` 객체를 상속 계층에서 정확한 타입, 더 일반적인 `기반 클래스`에서 더 구체적인 `파생 클래스`로 다운 캐스트 한다.
+- `값`을 만들어내는 `when 식`에서는 `else 가지`가 필요하다.
+
+```kotlin
+class SmartCast1(val c: Creature) {
+  fun contact() {
+    when (c) {
+      is Human -> c.greeting()
+      is Dog -> c.bark()
+      is Alien -> c.mobility()
+    }
+  }
+}
+
+class SmartCast2(var c: Creature) {
+  fun contact() {
+    when (val c = c) {
+      is Human -> c.greeting()
+      is Dog -> c.bark()
+      is Alien -> c.mobility()
+    }
+  }
+}
+```
+
+- `자동 다운캐스트`는 대상이 `상수(val)`여야만 제대로 `작동`한다.
+- `참조`가 `변경 가능`하다면, `타입을 검증한 시점`과 `함수를 호출한 시점` 사이에 참조가 가리키는 객체가 바뀔 가능성이 있다.
+- `가변 프로퍼티`는 `스마트 캐스트` 할 수 없다.
+- `식`이 `재계산`될 수 있는 경우에도 `스마트 캐스트`가 되지 않는다.
+    - `식`이나 `표현식`을 실행할때마다 `결과가 달라질 수 있는 경우` 스마트 캐스트가 `안전`하지 않기 때문이다.
+
+```kotlin
+fun main() {
+    val result: Any = calculateResult()
+
+    if (result is String) {
+        // 여기서 result는 String 타입으로 스마트 캐스트되어야 하지만, 실패할 수 있음
+        println(result.length)
+    }
+}
+
+fun calculateResult(): Any {
+    // 식을 실행할때마다 결과가 바뀐다.
+    return if (System.currentTimeMillis() % 2 == 0L) {
+        "Even Time"
+    } else {
+        42
+    }
+}
+```
+
+## 😀 as 키워드
+
+- `as 키워드`는 `일반적인 타입`을 `구체적인 타입`으로 `강제 변환`한다.
+- `as 키워드`로 안전하지 않은 캐스트를 시도하면, 실패시 `ClassCastException`이 발생한다.
+
+```kotlin
+// as가 실패하면 예외가 발생한다.
+fun dogBarkUnsafe(c: Creature) = 
+   (c as Dog).bark()
+
+fun dogBarkUnsafe2(c: Creture): String {
+  c as Dog
+  c.bark()
+  return c.bark() + c.bark()
+}
+```
+
+- `as?`는 실패해도 예외를 던지지 않고 `null을 반환`하는 `안전한 캐스트`이다.
+- `NullPointerException`을 방지하는 `엘비스 연산자`를 사용하면 강제 변환 실패시에도 `예외`를 `발생`시키지 않고 처리할 수 있다.
+
+```kotlin
+fun dogBarkSafe(c: Creature) = 
+  // bark()를 호출할 때 안전한 호출을 사용해야 한다.
+  (c as? Dog)?.bark() ?: "Not a Dog"
+```
+
+## 😐 List 원소의 타입 알아내기
+
+- `술어(Predicate)`에서 `is`를 사용하면 List나 다른 Iterable한 타입의 원소가 주어진 객체의 타입인지 알 수 있다.
+
+```kotlin
+val group: List<Creture> = listOf(
+  Human(), Human(), Dog(), Alien(), Dog()
+)
+
+fun main() {
+  // group에 Dog 타입이 하나도 없다면 null이 반환될 수 있다.
+  val dog = group
+     .find { it is Dog } as Dog?
+
+  dog?.bark() eq "Yip"
+}
+```
+
+- `filterIsInstance()` 함수를 사용하면 코드의 가독성이 더 좋다.
+    - `filter()`는 상위 타입의 List를 내놓지만, `filterIsInstance()`는 대상 하위 타입의 List를 반환한다.
+
+```kotlin
+fun main() {
+  val humans1: List<Creature> = 
+    group.filter { it is Human }
+
+  val humans2: List<Human> = 
+    group.filterIsInstance<Human>()
+
+  val humans3: List<Human> = 
+    // filterIsInstance()와 같은 효과를 낸다.
+    group.mapNotNull { it as? Dog }
+}
+```
+
+## 🤓 봉인된 클래스
+
+- `클래스 계층`을 제한하려면 `sealed` 키워드로 `클래스`를 `선언`하면 된다.
+
+```kotlin
+open class Transport
+
+data class Train(
+  val line: String
+): Transport()
+
+data class Bus(
+  val number: String, 
+  val capacity: Int
+): Transport()
+
+fun travel(transport: Transport) = when (transport) {
+  is Train -> "Train ${transport.line}"
+  is Bus -> "Bus ... ${transport.number}"
+  else -> "$transport is in limbo!"
+}
+```
+
+- `Transport 클래스`에 `다른 하위 타입`이 있을 수도 있으므로 코틀린은 `else 가지`를 `디폴트`로 `요구`한다.
+- `Transport 클래스`에 새로운 `하위 타입`을 추가한다면, `travel()` 함수를 수정해야 하지만, 아무런 단서가 없기 때문에 `유지보수`가 힘들어진다.
+
+```kotlin
+sealed class Transport
+
+data class Train(
+  val line: String
+): Transport()
+
+data class Bus(
+  val number: String, 
+  val capacity: Int
+): Transport()
+
+fun travel(transport: Transport) = when (transport) {
+  is Train -> "Train ${transport.line}"
+  is Bus -> "Bus ... ${transport.number}"
+}
+```
+
+- `sealed 클래스`는 상속을 제한한 `봉인된 클래스`라고 부른다.
+    - `sealed 클래스`를 직접 상속한 하위 클래스는 반드시 `기반 클래스`와 같은 `패키지`와 `모듈`안에 있어야 한다.
+    - `Transport`의 하위 클래스가 존재 할 수 없다는 사실을 확인할 수 있기 때문에 `when 문`이 가능한 모든 경우를 다 처리하므로 `else 가지`는 필요하지 않다.
+- `sealed 계층`을 도입하면 `새 하위 클래스`를 선언할 때 `오류`를 `발견`할 수 있다.
+    - `sealed 클래스`는 `하위 클래스`를 `도입`했을 때 `변경`해야 하는 `모든 지점`을 `표시`해준다.
+
+## 😄 Sealed Class vs Abstract Class
+
+```kotlin
+abstract class Abstract(val av: String) {
+  open fun concreteFunction() {}
+
+  abstract fun abstractFuntion(): String {}
+  init {}
+  constructor(c: Char) : this(c.toString())
+}
+
+sealed class Sealed(val av: String) {
+  open fun concreteFunction() {}
+
+  abstract fun abstractFuntion(): String {}
+  init {}
+  constructor(c: Char) : this(c.toString())
+
+}
+```
+
+- `sealed 클래스`는 기본적으로 `하위 클래스`가 모두 같은 파일 안에 정의되어야 한다는 제약이 가해진 `abstract 클래스`이다.
+
+```kotlin
+// sealed 클래스를 직접적으로 상속하지 않는 경우 sealed 클래스와 다른 패키지에 선언할 수 있다.
+class ThirdLevel : SealedSubclass()
+```
+
+- `sealed 클래스`를 직접 상속하는 클래스가 아니라면 `다른 파일`에 `선언`할 수 있다.
+- `sealed interface`도 `kotlin 1.5`부터 `사용`이 `가능`하다.
+
+## 😳 Sealed Class의 하위 클래스 열거하기
+
+```kotlin
+sealed class Top
+class Middle1 : Top()
+class Middle2 : Top()
+open class Middle3 : Top()
+class Bottom3 : Middle3()
+
+fun main() {
+  Top::class.sealedSubClasses
+    // sealed 클래스의 모든 하위 클래스 이름을 확인할 수 있다.
+    .map { it.simpleName }
+}
+```
+
+- `sealed 클래스`의 `클래스 객체`를 이용하면 `모든 하위 클래스`를 `확인`할 수 있다.
+    - `직접적인 하위 클래스`만 결과에 포함되고, `간접적인 하위 클래스`는 결과에 포함되지 않는다는 것에 주의해야 한다.
+    - `sealedSubclasses`는 `리플렉션`을 사용하므로, 시스템의 성능에 영향을 끼칠 수 있다.
+    
+
+## 😶‍🌫️ 타입 검사
+
+```kotlin
+val Any.name 
+  get() = this::class.simpleName
+
+interface Insect {
+  fun walk() = "$name: walk"
+  fun fly() = "$name: fly"
+} 
+
+class HouseFly : Insect
+
+class Flea : Insect {
+  override fun fly() = throw Exception("Flea cannot fly")
+  fun crawl() = "Flea: crawl"
+}
+
+fun Insect.basic() = 
+  walk() + " " + 
+    if (this is Flea)
+      crawl()
+    else 
+      fly()
+
+interface SwimmingInsect : Insect {
+  fun swim() = "$name : swim"
+}
+
+interface WaterWalker: Insect {
+  fun walkWater() = 
+   "$name: walk on water"
+}
+
+class WaterBeetle : SwimmingInsect
+class WaterStrider: WaterWalker
+class WhirligigBeetle: SwimmingInsect, WaterWalker
+
+fun Insect.water() = when (this) {
+  is SwimmingInsect -> swim()
+  is WaterWalker -> walkWater()
+  else -> "$name: drown"
+}
+```
+
+- `극소수 타입`에만 적합한 `특별한 행동 방식`을 `기반 클래스`에 넣는 것은 타당하지 않다.
+- `Insect.water()` 함수와 같이, `특별한 행동`을 하는 타입을 걸러내고 나머지 모든 대상에 대해서는 표준적인 행동을 채택하는 `when 식`을 이용할 수 있다.
+- `특별한 처리`를 위해 `별도의 소수 타입`을 선택하면, 새 타입을 추가해도 기존 코드에 영향을 끼치지 않는다.
+
+```kotlin
+interface Shape {
+  fun draw(): String
+}
+
+class Circle : Shape {
+  override fun draw() = "Circle: Draw"
+}
+
+class Square : Shape {
+  override fun draw() = "Square: Draw"
+  fun rotate() = "Square: Rotate"
+}
+
+fun turn(s: Shape) = when (s) {
+  is Square -> s.rotate()
+  else -> ""
+}
+```
+
+- `rotate()` 함수는 `Shape 인터페이스`에 추가하지 않고, `Square 클래스`에 직접 추가해야 한다.
+    - `Square`를 회전시키는 연산은 `Square 타입`에서만 사용하고, 다른 `Shape 인터페이스`의 `하위 타입`이 사용하지 않을 수 있기 때문이다.
+
+```kotlin
+class Triangle : Shape {
+  override fun draw() = "Triangle: Draw"
+  fun rotate() = "Triangle: Rotate"
+}
+
+fun turn2(s: Shape) = when (s) {
+  is Square -> s.rotate()
+  is Triangle -> s.rotate()
+  else -> ""
+}
+```
+
+- `Triangle`을 추가할 때 원래의 `turn()`은 깨지지 않지만, `원하는 결과`가 나오지 않는다.
+    - `turn()`을 원하는 대로 `동작`시키려면 `turn2()` 처럼 코드를 작성해야 한다.
+- `turn()` 과 `turn2()`를 `타입 검사 코딩`이라고 표현한다.
+    - 타입 검사 코딩은 `안티패턴`으로 `간주`된다.
+    - `sealed 클래스`를 사용하면 이런 문제를 `크게 완화`할 수 있다.
+
+## 😓 sealed 클래스를 활용한 타입 검사하기
+
+```kotlin
+sealed class Shape {
+  fun draw() = "$name: Draw"
+}
+
+class Circle : Shape()
+
+class Square: Shape() {
+  fun rotate() = "Square: Rotate"
+}
+
+class Triangle: Shape() {
+  fun rotate() = "Triangle: Rotate"
+}
+
+fun turn(s: Shape) = when (s) {
+  is Circle -> ""
+  is Square -> s.rotate()
+  is Triangle -> s.rotate()
+}
+
+```
+
+- `sealed 클래스`를 활용하면, 컴파일러가 `Shape`의 하위 타입 추가시 `turn() 함수`에 `검사`를 `추가`해야 한다는 것을 알려준다.
+
+```kotlin
+sealed class BeverageContainer {
+  abstract fun open(): String
+  abstract fun pour(): String
+}
+
+sealed class Can : BeverageContainer() {
+  override fun open() = "Pop Top"
+  override fun pour() = "Can: Pour"
+}
+
+class SteelCan : Can()
+class AluminumCan : Can()
+
+sealed class Bottle : BeverageContainer() {
+  override fun open() = "Remove Cap"
+  override fun pour() = "Bottle : Pour"
+}
+
+class GlassBottle : Bottle()
+sealed class PlasticBottle : Bottle()
+class PETBottle : PlasticBottle()
+class HDPEBottle : PlasticBottle()
+
+fun BeverageContainer.recycle() = when (this) {
+  is Can -> "Recycle Can"
+  is Bottle -> "Recycle Bottle"
+}
+
+fun BeverageContainer.recycle2() = when (this) {
+  is Can -> when (this) {
+    is SteelCan -> "Recycle Steel"
+    is Aluminum -> "Recyle Aluminum"
+  }
+  is Bottle -> when (this) {
+    is GlassBottle -> "Recycle Glass"
+    is PlasticBottle -> when (this) {
+      is PETBottle -> "Recycle PET"
+      is HDPEBottle -> "Recycle HDPE"
+    }
+  }
+}
+```
+
+- `중간 클래스`인 Can과 Bottle도 `sealed`가 되어야만 해법이 제대로 작동한다.
+- `when` 안에 `다른 when`을 `내포`시켜야만 컴파일러가 `모든 타입`을 `검사`하도록 해준다.
+
+```kotlin
+interface BeverageContainer {
+  fun open(): String
+  fun pour(): "$name: Pour"
+  fun recycle(): String
+}
+
+abstract class Can : BeverageContainer {
+  override fun open() = "Pop Top"
+}
+
+class SteelCan : Can() {
+  override fun recycle() = "Recycle Steel"
+}
+
+class AluminumCan : Can() {
+  override fun recycle() = "Recycle Aluminum"
+}
+
+abstract class Bottle : BeverageContainer {
+  override fun open() = "Remove Cap"
+}
+
+class GlassBottle : Bottle() {
+  override fun recycle() = "Recycle Glass"
+}
+
+abstract class PlasticBottle : Bottle()
+
+class PETBottle : PlasticBottle() {
+  override fun recycle() = "Recycle PET"
+}
+
+class HDPEBottle : PlasticBottle() {
+  override fun recycle() = "Recycle HDPE"
+}
+```
+
+- `Can`과 `Bottle`을 `abstract 클래스`로 정의해서 컴파일러는 모든 클래스가 `recycle()` 함수를 오버라이드 하도록 강제했다.
+- `recycle()`의 행동 방식이 `여러 클래스`에 `분산`되었지만 이는 `설계상의 선택`이므로 문제가 되지는 않는다.
+- `재활용 동작`이 자주 바뀌어서 한군데서 처리하고 싶다면, `외부 함수` 안에서 `타입 검사`를 하는게 더 나은 선택일 수 있다.
+
+## 😏 내포된 클래스
+
+- `내포된 클래스`는 단순히 외부 클래스의 `이름 공간` 안에 `정의`된 `클래스`이다.
+- `내포된 클래스`를 사용하면 `객`체 안에 `더 세분화된 구조`를 `정의`할 수 있다.
+
+```kotlin
+class Airport(private val code: Sting) {
+  open class Plane {
+    fun contact(airport: Airport) = "Contacting ${airport.code}"
+  }
+
+  private class PrivatePlane : Plane()
+  fun privatePlane() : Plane = PrivatePlane()
+}
+```
+
+- `일반 클래스`는 다른 클래스의 `private 프로퍼티`에 접근할 수 없지만, `내포된 클래스`는 `접근`할 수 있다.
+- `Airport.Plane`을 `import`하면 `Plane`을 `한정`시키지 않아도 `사용 가능`하다.
+
+## 😃 지역 클래스
+
+- `함수` 안에 `내포된 클래스`를 `지역 클래스`라고 한다.
+
+```kotlin
+fun localClasses() {
+  // 지역 인터페이스는 허용되지 않기 때문에 지역 클래스를 사용한다.
+  open class Amphibian
+  class Frog : Amphibian()
+  val amphibian: Amphibian = Frog()
+}
+
+fun createAmphibian() : Amphibian {
+  class Frog : Amphibian()
+  return Frog()
+}
+```
+
+- `지역 클래스`의 `객체`를 `반환`하려면 그 객체를 함수 밖에서 정의한 `인터페이스`나 `클래스`로 업캐스트 해야 한다.
+
+## 😵 인터페이스 안에 내포된 클래스
+
+- `인터페이스` 안에 `클래스`를 `내포` 시킬 수 있다.
+
+```kotlin
+interface Item {
+  val type: Type
+  data class Type(val type: String)
+}
+
+class Bolt(type: String) : Item {
+   override val type = Item.Type(type)
+}
+```
+
+## 🥺 내포된 Enum
+
+- `Enum`도 `클래스`이므로 `다른 클래스` 안에 `내포`될 수 있다.
+- `Enum`을 `함수`에 `내포`시킬 수는 없고, `Enum`이 다른 클래스를 `상속`할 수도 없다.
+
+```kotlin
+class Ticket(
+  val name: String,
+  val seat: Seat = Coach
+) {
+  enum class Seat {
+    Coach,
+    Premium,
+    Business, 
+    First
+  }
+}
+```
+
+`인터페이스` 안에 `Enum`을 `내포`시킬 수 있다.
+
+```kotlin
+interface Game {
+  enum class State { Playing, Finished }
+  enum class Mark { Blank, X, O }
+}
+```
+
+## 😵‍💫 객체
+
+- `object`는 여러 인스턴스가 필요하지 않거나, `명시적으로 인스턴스를 여러 개 생성하는 것`을 막아야 하는 경우 사용할 수 있다.
+- `싱글턴 패턴`을 구현하는 방법이기도 하다.
+
+```kotlin
+object JustOne {
+  val n = 2
+  fun f() = n * 10
+  fun g() = this.n * 20
+}
+```
+
+- `object`에 대해서는 `파라미터 목록`을 `지정`할 수 없다.
+- `object`의 이름은 `클래스 이름`을 겸하기 때문에 `첫 글자`를 `영어 대문자`로 `표현`한다.
+
+```kotlin
+open class Paint(val color: String) {
+  open fun apply() = "Applying $color"
+}
+
+object Acrylic : Paint("Blue") {
+  override fun apply() = 
+   "Acrylic, ${super.apply()}"
+}
+
+interface PaintPreparation {
+  fun prepare(): String
+}
+
+object Prepare: PaintPreparation {
+  override fun prepare() = "Scrape"
+}
+```
+
+- `object`는 다른 `일반 클래스`나 `인터페이스`를 `상속`할 수 있다.
+
+```kotlin
+object Outer {
+  object Nested {
+    val a = "Outer.Nested.a"
+  }
+}
+```
+
+- `object`는 함수 안에 넣을 수 없지만, 다른 `object`나 클래스 안에 `object`를 `내포`시킬 수 있다.
+- `내부 클래스(inner class)`의 경우에는 `object`를 선언할 수 없다.
+
+## 😎 내부 클래스
+
+- `내부 클래스`는 `내포된 클래스`와 비슷하지만 `내부 클래스`는 바깥 클래스의 인스턴스에 대한 `참조`를 유지한다.
+
+```kotlin
+class Hotel(private val reception: String) {
+  open inner class Room(val id: Int = 0) {
+    fun callReception() = 
+      "Room $id Calling $reception"
+  }
+}
+
+fun main() {
+  val nycHotel = Hotel("311")
+  val room = nycHotel.Room(319)
+  
+  room.callReceptoin()
+}
+```
+
+- `reception` 프로퍼티는 `Hotel`의 일부분이지만 `아무런 한정` 없이 `inner class` Room이 사용하고 있다.
+- `내포된 클래스`는 `inner 클래스`를 상속할 수 없다.
+- `inner 클래스`의 객체를 생성하려면 `외부 객체`를 제공해야 하고, `코틀린`은 `inner data class`는 허용하지 않는다.
+
+## 👿 한정된 this
+
+- `inner 클래스`의 `this`는 inner 객체나 외부 객체를 가리킬 수 있다.
+- 이 문제를 해결하기 위해 `코틀린`에서는 `한정된 this 구문`을 `사용`한다.
+- 한정된 this 구문은 `this` 뒤에 `@`를 붙이고 `대상 클래스 이름`을 덧붙인 것이다.
+
+```kotlin
+class Fruit {
+  fun changeColor(color: String) = ""
+  fun absorbWater(amount: Int) {}
+
+  // @Seed라는 레이블이 암시적으로 붙는다.
+  inner class Seed {
+     fun changeColor(color: String) = ""
+    
+     // name은 Fruit와 Seed에 다 있기 때문에 한정된 this 구문을 사용해야 한다.
+     this@Seed.name eq "Seed"
+  }
+
+  inner class DNA {
+     fun changeColor(color: String) {
+       // 재귀 호출 -> 자신의 changeColor()를 호출한다.
+       changeColor(color)
+
+       // 한정된 this 구문을 활용해 어떤 클래스의 함수를 호출할지 한정한다.
+       this@Seed.changeColor(color)
+       this@Fruit.changeColor(color)
+     }
+  }
+}
+```
+
+## 🥰 내부 클래스 상속
+
+- `내부 클래스`는 다른 `외부 클래스`에 있는 `내부 클래스`를 `상속`할 수 있다.
+
+```kotlin
+open class Egg {
+  private var yolk = Yolk()
+  open inner class Yolk {
+    init {}
+    open fun f() {}
+  }
+}
+
+class BigEgg : Egg {
+  // Egg의 내부 클래스인 Yolk()를 기반 클래스로 정의한다.
+  inner class Yolk : Egg.Yolk() {
+
+  }
+}
+```
+
+## 😝 지역 내부 클래스와 익명 내부 클래스
+
+- `멤버 함수` 안에 정의된 클래스를 `지역 내부 클래스`라고 한다.
+- 이런 클래스는 `객체 식`이나 `SAM 변환`을 사용해 `익명`으로 `생성`할 수 있다.
+    - `inner 키워드`를 모든 경우에 대해 사용하지는 않지만, `암시적`으로 `내부 클래스`가 된다.
+
+```kotlin
+fun interface Pet {
+  fun speak(): String
+}
+
+object CreatePet {
+  fun dog(): Pet {
+    val say = "Bark"
+    // 지역 내부 클래스
+    class Dog : Pet {
+      override fun speak() = say + " home!"
+    }  
+  }
+
+  fun cat(): Pet {
+    val emit = "Meow"
+    // 익명 내부 클래스
+    return object: Pet {
+      override fun speak() = emit() + " home!"
+    }
+  }
+
+  fun hamster() : Pet {
+    val squeak = "Squeak"
+    // SAM 변환
+    return Pet { squeak + " home!" }
+  }
+}
+```
+
+- `지역 내부 클래스`는 함수에 정의된 `다른 원소`와 `함수 정의`를 포함하는 `외부 클래스 객체`의 `원소`에 모두 접근 가능하다.
+- `내부 클래스`는 `외부 클래스` 객체에 대한 참조를 저장하므로, `지역 내부 클래스`도 자신을 둘러싼 클래스에 속한 객체의 `모든 멤버`에 `접근`할 수 있다.
+
+```kotlin
+fun interface Counter {
+  fun next(): Int
+}
+
+object CounterFactory {
+  private var count = 0
+  fun new(name: String): Counter {
+    // 지역 내부 클래스
+    class Local : Counter {
+      init {}
+      override fun next() : Int {
+        trace("$name $count")
+        return count++
+      } 
+    }
+    return Local()
+  }
+
+  fun new2(name: String): Counter {
+    // 익명 클래스 내부 인스턴스
+    return object: Counter {
+      init {}
+      override fun next(): Int {
+        trace("$name $count")
+        return count++
+      }
+    }
+  }
+
+  fun new3(name: String): Counter {
+    return Counter { // SAM 변환
+      trace("$name $count")
+      count++
+    }
+  }
+}
+```
+
+- `SAM 변환`은 `init 블록`이 들어갈 수 없다는 `한계점`이 있다.
+- `지역 클래스`로는 아주 기본적이고 `단순한 클래스`만 사용해야 한다.
+    - `지역 클래스`가 복잡해지면 이 클래스를 함수에서 꺼내 `일반 클래스`로 `격상`시켜야 한다.
+
+## 😳 동반 객체
+
+- `companion object(동반 객체)`는 `java`의 `static`과 같은 특징을 가진다.
+- 일반 클래스의 원소는 `동반 객체의 원소`에 접근할 수 있지만, `동반 객체의 원소`는 일반 클래스의 원소에 접근할 수 없다.
+
+```kotlin
+class WithCompanion {
+  // 일반 클래스 안에서 동반 객체를 정의하면 동반 객체 원소를 투명하게 참조할 수 있다.
+  companion object {
+    val i = 3
+    fun f() = i * 3
+  }
+
+  fun g() = i + f()
+}
+```
+
+- `동반 객체`는 클래스당 하나만 허용되며, `명확성`을 위해 `동반 객체`에 `이름`을 `부여`할 수도 있다.
+- `동반 객체`는 이름을 지정하지 않는다면, `Companion`이 `default` 이름이다.
+
+```kotlin
+class WithNamed {
+  companion object Named {
+    fun s() = "from Named"
+  }
+}
+
+class WithDefault {
+  companion object {
+    fun s() = "from Default"
+  }
+}
+```
+
+- `동반 객체` 안에서 `프로퍼티`를 `생성`하면 해당 필드는 `메모리상에 단 하나`만 `존재`하게 된다.
+- `동반 객체`와 연관된 클래스의 `모든 인스턴스`가 이 필드를 `공유`한다.
+
+```kotlin
+class WithObjectProperty {
+  companion object {
+    private var n: Int = 0 // 단 하나만 생긴다.
+  }
+
+  // 동반 객체를 둘러싼 클래스는 동반 객체의 private 멤버에 접근할 수 있다.
+  fun increment() = ++n
+}
+```
+
+- 어떤 함수가 오직 `동반 객체의 프로퍼티`만 사용하면, 이 함수를 `동반 객체`로 옮기는 것이 타당하다.
+
+```kotlin
+class CompanionObjectFunction {
+  companion object {
+    private var n: Int = 0
+
+    // 동반 객체의 프로퍼티만 사용하므로, 동반 객체에 존재하는 것이 타당하다.
+    fun increment() = ++n
+  }
+}
+```
+
+- `동반 객체`는 다른 곳에 정의한 `클래스`의 `인스턴스`일 수도 있다.
+- `동반 객체`는 `인터페이스`를 `구현`할 수도 있다.
+- `동반 객체`는 `기반 클래스`를 `상속`하고, `확장`할 수 있다.
+
+```kotlin
+interface ZI {
+  fun f(): String
+}
+
+open class ZIOpen : ZI {
+  override fun f() = "ZIOpen.f()"
+}
+
+class ZICompanion {
+  // 동반 객체에 다른 곳에 정의한 클래스의 인스턴스를 대입
+  companion object: ZIOpen()
+}
+
+class ZICompanionInheritance {
+  companion object: ZIOpen() {
+    // 다른 클래스를 상속하고, 확장할 수 있다.
+    override fun f() = "ZICompanionInheritance.f()"
+  }
+}
+
+class ZIClass {
+  companion object: ZI {
+    // 인터페이스를 구현할 수 있다.
+    override fun f() = "ZIClass.f()"
+  }
+}
+```
+
+- `동반 객체`가 확장하려는 클래스가 `open`이 아닌 경우, `위임`을 이용해 `오버라이드` 하고 `확장`할 수 있다.
+
+```kotlin
+interface Extended: ZI {
+  fun u(): String
+}
+
+class Extend : ZI by Companion, Extended {
+   companion object: ZI {
+     override fun f() = "Extend.f()"
+     override fun g() = "Extend.g()"
+   }
+} 
+```
+
+- `동반 객체`는 `객체 생성을 제어`하는 경우에 유용하게 사용할 수 있다.
+    - `팩토리 메서드` 패턴을 이용해 `객체 생성 방식`을 `제한`할 수 있다.
+
+```kotlin
+class Numbered2
+private constructor(private val id: Int) { // Numbered2의 비공개 생성자
+  override fun toString(): String = "#$id"
+  companion object Factory {
+    fun create(size: Int) = 
+      List(size) { Numbered2(it) }
+  }
+}
+```
+
+- `Numbered2` 인스턴스를 생성하는 방법은 `create()` 팩토리 함수를 통하는 방법 뿐이다.
+
+- `동반 객체`의 생성자는 동반 객체를 둘러싼 클래스가 최초로 `프로그램`에 `적재` 될 때 이뤄진다.
+
+```kotlin
+class CompanionInit {
+  init {}
+}
+```
