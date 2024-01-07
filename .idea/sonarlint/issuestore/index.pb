@@ -2637,3 +2637,17 @@ s
 CChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/Ticket.kt,5/a/5ada84913a76d5fd0d7bd6c6b55741de9ad5a7b1
 r
 BChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/Fillt.kt,f/1/f1661cc1d283e9acf6062a9632063b79d78154d9
+f
+6Chapter5/kh-cho/khcho-study/src/main/kotlin/Objects.kt,6/2/62c087b4754a115bd389bbe256b4aa39f735117b
+n
+>Chapter5/kh-cho/khcho-study/src/main/kotlin/Objects/Objects.kt,0/c/0c26f5f95b799eb7a002fdf507e341d3b97b644f
+x
+HChapter5/kh-cho/khcho-study/src/main/kotlin/Objects/ObjectInheritance.kt,d/6/d6919f5bcf9b73d1b6595821e4bf1090ee232afb
+m
+=Chapter5/kh-cho/khcho-study/src/main/kotlin/Objects/Share2.kt,7/8/784ea6ecad63e52cf4db5b7c43b5e7206f481ec8
+t
+DChapter5/kh-cho/khcho-study/src/main/kotlin/Objects/GlobalSharing.kt,8/5/85f71478059e64b148e16d700a69ad22a63cdc27
+m
+=Chapter5/kh-cho/khcho-study/src/main/kotlin/Objects/Share1.kt,6/8/68de7e25209dc62ae3c3129eea0b575ded52a3d2
+t
+DChapter5/kh-cho/khcho-study/src/main/kotlin/Objects/ObjectNesting.kt,6/e/6ec422f1ccdcb7a3a26eb39d53f6c8852ddce8ae
