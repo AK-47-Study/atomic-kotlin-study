@@ -9,9 +9,18 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter1/hj-nam" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter1/kh-cho" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter1/mj-kang" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter1/mj-seo" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter2/mj-seo" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter3/mj-seo" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter2/kh-cho" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter3/kh-cho" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+  </component>
+  <component name="SonarLintModuleSettings">
+    <option name="uniqueId" value="761333b0-98b7-4a81-a4f5-94b8b9612949" />
   </component>
 </module>
