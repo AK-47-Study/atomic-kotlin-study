@@ -2599,3 +2599,13 @@ Q.idea/sonarlint/securityhotspotstore/0/d/0d70dba2ba50185c4e76741af03d7e1794991f
 Q.idea/sonarlint/securityhotspotstore/2/e/2efda402c81465df540b3da1835a64080a8aa997,4/f/4fcb240e41834580bacf3d83a92a8f6934a2e95a
 Å
 Q.idea/sonarlint/securityhotspotstore/5/c/5c101d60611c6b515ccad23bf098a7c7f8ec4b96,6/5/6542868cb1c1e2c0884a0e706c09d576961a91ef
+u
+EChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/UnSealed.kt,8/6/8605042d14d3cbdbaa069d310234ab6c7b448ae3
+z
+JChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedClasses.kt,d/2/d26c71ad9bb0fb81f5a95b35a4de9d629c1b977a
+}
+MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedVsAbstarct.kt,9/c/9c7dbc7bbd9a2c7e4aee367f1e962635db66a870
+}
+MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedVsAbstract.kt,7/e/7e7c1d4668840452b677eb816faeac8ab764c7f6
+}
+MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedSubclasses.kt,d/f/df04f459e9ec5c64d89bfa1862b784b5a0811f92
