@@ -2073,8 +2073,6 @@ o
 ?Chapter5/kh-cho/khcho-study/src/main/kotlin/DownCasting/Safe.kt,c/c/cc6fef05a783d710caaab84b2bfad6b92312379d
 s
 CChapter5/kh-cho/khcho-study/src/main/kotlin/DownCasting/FindType.kt,a/b/ab8e65d443cfaffb30dec08267ff6e0893f73762
-x
-HChapter5/kh-cho/khcho-study/src/main/kotlin/DownCasting/FilterIstance.kt,1/c/1ca81c4a365c506a5be5d1fabd01d781c6cc4a7f
 y
 IChapter5/kh-cho/khcho-study/src/main/kotlin/DownCasting/FilterInstance.kt,e/e/ee790670b4ff1e6d6f126907e528a368af06c265
 w
@@ -2604,8 +2602,6 @@ EChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/UnSealed.kt,8/6/8605
 z
 JChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedClasses.kt,d/2/d26c71ad9bb0fb81f5a95b35a4de9d629c1b977a
 }
-MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedVsAbstarct.kt,9/c/9c7dbc7bbd9a2c7e4aee367f1e962635db66a870
-}
 MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedVsAbstract.kt,7/e/7e7c1d4668840452b677eb816faeac8ab764c7f6
 }
 MChapter5/kh-cho/khcho-study/src/main/kotlin/SealedClasses/SealedSubclasses.kt,d/f/df04f459e9ec5c64d89bfa1862b784b5a0811f92
@@ -2621,8 +2617,6 @@ FChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/TypeCheck2.kt,1/a/1aa
 MChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/BeverageContainer.kt,8/9/894f24aa406db9106c49770b9dc0d04e944dc73c
 v
 FChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/TypeCheck3.kt,1/b/1ba555a199bf9c86682e6723de9c95f77cd2ee6d
-u
-EChapter5/kh-cho/khcho-study/src/main/kotlin/TypeChecking/ShapeImpl.kt,4/b/4b357abc7c6101f3ec0d6605394f043628f859c5
 t
 DChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/Airport.kt,1/5/15afef4dbe7333a96a0935e8c3cc9fd6c5c0f7bf
 x
@@ -2637,8 +2631,6 @@ s
 CChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/Ticket.kt,5/a/5ada84913a76d5fd0d7bd6c6b55741de9ad5a7b1
 r
 BChapter5/kh-cho/khcho-study/src/main/kotlin/NestedClasses/Fillt.kt,f/1/f1661cc1d283e9acf6062a9632063b79d78154d9
-f
-6Chapter5/kh-cho/khcho-study/src/main/kotlin/Objects.kt,6/2/62c087b4754a115bd389bbe256b4aa39f735117b
 n
 >Chapter5/kh-cho/khcho-study/src/main/kotlin/Objects/Objects.kt,0/c/0c26f5f95b799eb7a002fdf507e341d3b97b644f
 x
@@ -2651,3 +2643,13 @@ m
 =Chapter5/kh-cho/khcho-study/src/main/kotlin/Objects/Share1.kt,6/8/68de7e25209dc62ae3c3129eea0b575ded52a3d2
 t
 DChapter5/kh-cho/khcho-study/src/main/kotlin/Objects/ObjectNesting.kt,6/e/6ec422f1ccdcb7a3a26eb39d53f6c8852ddce8ae
+q
+AChapter5/kh-cho/khcho-study/src/main/kotlin/InnerClasses/Hotel.kt,5/f/5f25d4fa1f276e10da52e1124ff75df1dc479640
+u
+EChapter5/kh-cho/khcho-study/src/main/kotlin/InnerClasses/Qualified.kt,d/1/d11430ff0ee77cdc537cde33abb8d5fa549fdbe6
+Å
+QChapter5/kh-cho/khcho-study/src/main/kotlin/InnerClasses/InnerClassInheritance.kt,b/d/bd3b8a6cb8c9b81e00f58eaca270fd5ba696e8e3
+}
+MChapter5/kh-cho/khcho-study/src/main/kotlin/InnerClasses/LocalInnerClasses.kt,2/3/2301916a8d85b5c4d164251c13e9153ef1661630
+z
+JChapter5/kh-cho/khcho-study/src/main/kotlin/InnerClasses/CounterFactory.kt,b/5/b572932c55b430fff8e7ac316262083fc8710f25
