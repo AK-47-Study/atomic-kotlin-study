@@ -17,7 +17,7 @@ class Fillit(
     private val grid = MutableList(side * side) { Blank }
     private var player = X
 
-    fun turn() {
+    private fun turn() {
         val blanks = grid.withIndex()
             .filter { it.value == Blank }
 
