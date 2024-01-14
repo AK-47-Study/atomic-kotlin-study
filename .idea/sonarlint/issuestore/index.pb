@@ -3891,3 +3891,17 @@ w
 G.idea/sonarlint/issuestore/4/2/4213794cc92ac2b1961775b125abe3eeb323728f,f/e/fe22f0081e363125b0254e5424723361bf8fc51b
 w
 G.idea/sonarlint/issuestore/4/8/483eb1b08d55ee2a2b7599180a262dea103c5044,0/9/097f60d9ed32acc2339fba72874eef7e159b4bbc
+{
+KChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/JulianMonth.kt,e/b/ebbb25fd797cb6f1566f817c3db21d639b24777e
+€
+PChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/QuadraticRequrie.kt,4/7/477a935c6c99e015a01a26549045052e0b8d61bb
+€
+PChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/QuadraticRequire.kt,b/1/b1059ddf2bd7f68d5ee02ddf602b2670648aef15
+x
+HChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/DataFile.kt,b/f/bf81a92c3c9d752053f3423368607adf96178a8a
+x
+HChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/GetTrace.kt,2/b/2bd11ae075f63a967eb7a0800ab4a29a855e643e
+~
+NChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/RequireNotNull.kt,2/3/23a15a65586def2bd730ef82ac71d35fd211f94e
+~
+NChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/Postconditions.kt,3/b/3b191096d2f752bd025983ff58085c1acdf44d1d
