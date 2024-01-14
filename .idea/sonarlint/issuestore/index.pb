@@ -3905,3 +3905,13 @@ HChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/GetTrace.kt,2/b/2
 NChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/RequireNotNull.kt,2/3/23a15a65586def2bd730ef82ac71d35fd211f94e
 ~
 NChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/Postconditions.kt,3/b/3b191096d2f752bd025983ff58085c1acdf44d1d
+o
+?Chapter6/kh-cho/khcho-study/src/main/kotlin/nothingType/Todo.kt,0/b/0b1f8a0c51df4a5c711c4d23b9830359ede88d7e
+o
+?Chapter6/kh-cho/khcho-study/src/main/kotlin/nothingType/Fail.kt,2/d/2d3090cee39f5c422b410e746d8f9e67d1105677
+v
+FChapter6/kh-cho/khcho-study/src/main/kotlin/nothingType/CheckObject.kt,8/2/82b1bb74d8f0bc1e08775ed34cf529aec24a0af9
+w
+GChapter6/kh-cho/khcho-study/src/main/kotlin/nothingType/CheckObject2.kt,1/7/17aa6586563ffec3a1d7ae50d5bc0216a3d43404
+x
+HChapter6/kh-cho/khcho-study/src/main/kotlin/nothingType/ListOfNothing.kt,e/d/edbdb917bd3671e2c7f6ec4ee9e764683ea0fb02
