@@ -3915,3 +3915,11 @@ w
 GChapter6/kh-cho/khcho-study/src/main/kotlin/nothingType/CheckObject2.kt,1/7/17aa6586563ffec3a1d7ae50d5bc0216a3d43404
 x
 HChapter6/kh-cho/khcho-study/src/main/kotlin/nothingType/ListOfNothing.kt,e/d/edbdb917bd3671e2c7f6ec4ee9e764683ea0fb02
+|
+LChapter6/kh-cho/khcho-study/src/main/kotlin/resourceCleanup/AutoCloseable.kt,c/b/cb1168dc6df8147f30dfa7d3ec0a51acec56c116
+w
+GChapter6/kh-cho/khcho-study/src/main/kotlin/resourceCleanup/UseLines.kt,3/e/3e7ba83028989e19c92f94113050f9ad2191c538
+z
+JChapter6/kh-cho/khcho-study/src/main/kotlin/resourceCleanup/ForEachLine.kt,5/4/5434b6fb8be38dd3d78ddbb39774d19d2e9bdb07
+u
+EChapter6/kh-cho/khcho-study/src/main/kotlin/resourceCleanup/Usable.kt,9/7/97976da60ca4490b68210c7f833eaccd1e910aa5
