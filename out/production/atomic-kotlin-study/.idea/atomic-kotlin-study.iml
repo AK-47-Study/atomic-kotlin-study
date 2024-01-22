@@ -9,14 +9,16 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter1/hj-nam" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter1/kh-cho" />
-      <excludeFolder url="file://$MODULE_DIR$/Chapter1/mj-kang" />
-      <excludeFolder url="file://$MODULE_DIR$/Chapter1/mj-seo" />
-      <excludeFolder url="file://$MODULE_DIR$/Chapter2/mj-seo" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter3/kh-cho" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter3/mj-seo" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter2/kh-cho" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter3/kh-cho" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter4/kh-cho" />
       <excludeFolder url="file://$MODULE_DIR$/Chapter5/kh-cho" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter2/mj-seo" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter1/mj-seo" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter1/mj-kang" />
+      <excludeFolder url="file://$MODULE_DIR$/Chapter4/kh-cho" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
