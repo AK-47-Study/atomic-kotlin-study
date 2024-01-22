@@ -3894,8 +3894,6 @@ G.idea/sonarlint/issuestore/4/8/483eb1b08d55ee2a2b7599180a262dea103c5044,0/9/09
 {
 KChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/JulianMonth.kt,e/b/ebbb25fd797cb6f1566f817c3db21d639b24777e
 €
-PChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/QuadraticRequrie.kt,4/7/477a935c6c99e015a01a26549045052e0b8d61bb
-€
 PChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/QuadraticRequire.kt,b/1/b1059ddf2bd7f68d5ee02ddf602b2670648aef15
 x
 HChapter6/kh-cho/khcho-study/src/main/kotlin/checkInstruction/DataFile.kt,b/f/bf81a92c3c9d752053f3423368607adf96178a8a
@@ -3923,3 +3921,5 @@ z
 JChapter6/kh-cho/khcho-study/src/main/kotlin/resourceCleanup/ForEachLine.kt,5/4/5434b6fb8be38dd3d78ddbb39774d19d2e9bdb07
 u
 EChapter6/kh-cho/khcho-study/src/main/kotlin/resourceCleanup/Usable.kt,9/7/97976da60ca4490b68210c7f833eaccd1e910aa5
+s
+CChapter6/kh-cho/khcho-study/src/main/kotlin/logging/BasicLogging.kt,d/c/dc09e9f5e432b894554296abb7becbee0804df79
