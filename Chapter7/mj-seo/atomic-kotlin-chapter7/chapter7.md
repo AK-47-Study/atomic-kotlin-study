@@ -765,3 +765,411 @@ fun `'when' is a keyword`() = Unit
 - `단위 테스트`에서는 테스트에 대해 자세히 설명하는 읽기 쉬운 이름의 `테스트 함수`를 정의할 수 있으므로 이런 기능이 특히 유용하게 쓰인다.
 
 `연산자 오버로딩`을 함에 있어서, `프로그램`의 의미를 이해하기 어렵도록 `연산자`를 정의하지 않도록 주의해서 취급해야 한다.
+
+## 🙄 프로퍼티 위임
+
+- `프로퍼티`는 접근자 로직을 위임할 수 있다.
+- `by 키워드`를 사용하면 `프로퍼티`를 위임과 연결할 수 있다.
+
+`프로퍼티`가 읽기 전용인 경우 위임 객체의 `클래스`는 `getValue()` 함수 정의가 있어야 하고, 읽고 쓸 수 있는 경우 `getValue()` & `setValue()` 모두 정의되어야 한다.
+
+```kotlin
+class Readable(val i: Int) {
+  // Readable의 value는 BasicRead 객체에 의해 위임된다.
+  val value: String by BasicRead()
+}
+
+class BasicRead {
+  operator fun getValue(
+    // Readable에 대한 접근을 가능하게 하는 파라미터를 얻는다.
+    r: Readable,
+    // Kproperty는 위임 프로퍼티에 대한 리플렉션 정보를 제공한다.
+    property: KProperty<*>
+  ) = "getValue: ${r.i}"
+}
+```
+
+`프로퍼티` 뒤에 `by`라고 지정하면 `BasicRead` 객체를 `by` 앞의 프로퍼티와 연결한다.
+
+`getValue()`가 String을 반환하기 때문에 `value` 프로퍼티의 타입도 `String` 이어야 한다.
+
+```kotlin
+class ReadWriteable(var i: Int) {
+  var msg = ""
+  var value: String by BasicReadWrite()
+}
+
+class BasicReadWrite {
+  // value 프로퍼티가 읽고 쓰기가 가능한 타입이기 때문에 getValue() & setValue() 정의 필요
+  operator fun getValue(
+    rw: ReadWriteable,
+    property: KProperty<*>
+  ) = "getValue: ${rw.i}"
+
+  operator fun setValue(
+    rw: ReadWriteable,
+    property: KProperty<*>,
+    // 해당 위임 객체가 적용된 프로퍼티의 타입과 일치해야 한다.
+    s: String
+  ) {
+    rw.i = s.toIntOrNull() ?: 0
+    rw.msg = "setValue to ${rw.i}"
+  }
+}
+
+```
+
+`BasicRead`와 `BasicReadWrite` 모두 인터페이스 구현을 요하지 않는다.
+
+명시적으로 구현하고 싶다면 `ReadOnlyProperty` 인터페이스를 상속해 구현할 수도 있다.
+
+```kotlin
+class Readable2(val i: Int) {
+  val : String by BasicRead2()
+  
+  // SAM 변환 -> ReadOnlyProperty는 멤버 함수가 하나 뿐이기 때문에(fun interface) 가능
+  val value2: String by
+  ReadOnlyProperty {_, _ -> "getValue: $i" }
+}
+
+class BasicRead2 : ReadOnlyProperty<Readable2, String> {
+  override operator fun getValue(
+    thisRef: Readable2,
+    property: KProperty<*>
+  ) = "getValue: ${thisRef.i}"
+}
+```
+
+`ReadOnlyProperty`를 구현하면 `BasicRead2`를 위임으로 사용할 수 있다는 사실을 사용자에게 알릴 수 있다.
+
+`getValue()` 정의가 제대로 들어 있도록 `보장`할 수 있는 효과도 누릴 수 있다.
+
+```kotlin
+class ReadWriteable2(var i: Int) {
+  var msg = ""
+  var value: String by BasicReadWrite2()
+}
+
+class BasicReadWrite2 : ReadWriteProperty<ReadWriteable2, String> {
+  override operator fun getValue(
+    rw: ReadWriteable2,
+    property: KProperty<*>
+  ) = "getValue: ${rw.i}"
+
+  override operator fun setValue(
+    rw: ReadWriteable2,
+    property: KProperty<*>,
+    s: String
+  ) {
+    rw.i = s.toIntOrNull() ?: 0
+    rw.msg = "setValue to ${rw.i}"
+  }
+}
+```
+
+`ReadWriteProperty`를 구현하면, `getValue()`와 `setValue()` 정의를 보장해준다.
+
+```kotlin
+// 위임 클래스에서 사용하는 함수 정의
+operator fun getValue(thisRef: T, property: KProperty<*>): V
+operator fun setValue(thisRef: T, property: KProperty<*>, value: V)
+```
+
+두 함수의 파라미터를 살펴보면 아래와 같다.
+
+- `thisRef`: `T`는 `위임자 개체(클래스)`를 가리킨다. thisRef를 쓰고 싶지 않다면 `Any?`를 사용해 위임자 객체의 내부를 보기 어렵게 만들 수 있다.
+- `property`: 위임 프로퍼티에 대한 정보를 제공한다. 가장 일반적으로 사용하는 정보는 `name`이다.
+- `value`: 위임 프로퍼티에 `저장할 값`이다.
+
+`getValue()`와 `setValue()`를 구현할 때는 `인터페이스`를 명시적으로 구현하는 방식과 `operator fun`을 사용하는 관습을 통해 구현할 수 있다.
+
+```kotlin
+class Person(
+  private val first: String, 
+  private val last: String
+) {
+  val name by
+  ReadOnlyProperty<Person, String> {_, _ -> "$first $last"}
+}
+```
+
+`위임자 객체`의 private 멤버에 대한 접근을 가능하게 하려면 `위임 클래스`를 `내포`시켜야 한다.
+
+```kotlin
+class Add(val a: Int, val b: Int) {
+  val sum by Sum()
+}
+
+// 위임자 객체의 멤버에 대한 접근이 충분하면, 확장 함수로 만들 수 있다.
+operator fun Sum.getValue(
+  thisRef: Add,  
+  property: KProperty<*>
+) = thisRef.a + thisRef.b
+```
+
+`확장 함수`를 이용하면,  변경하거나 상속할 수 없는 기존 클래스에 `getValue()`와 `setValue()`를 추가할 수 있다.
+
+```kotlin
+class Fibonacci : ReadWriteProperty<Any?, Long> {
+  private var current: Long = 0
+  override fun operator getValue(
+    thisRef: Any?,
+    property: KProperty<*>
+  ) = current
+
+  override operator fun setValue(
+    thisRef: Any?,
+    property: KProperty<*>,
+    value: Long
+  ) {
+    current = fibonacci(value.toInt())
+  }
+}
+```
+
+첫 번째 타입을 `Any?`로 지정해 무시함으로써 더 일반적인 목적의 위임을 만들 수도 있다.
+
+`thisRef` 내부 정보가 필요하지 않기 때문에 `Any?`로 타입을 지정해 무시하면 되기 때문이다.
+
+## 🤪 프로퍼티 위임 도구
+
+- `표준 라이브러리`에는 특별한 `프로퍼티 위임 연산`이 들어있다.
+- `Map`은 위임 프로퍼티의 위임 객체로 쓰일 수 있도록 미리 설정된 `코틀린 표준 라이브러리` 타입이다.
+
+```kotlin
+class Driver(
+  map: MutableMap<String, Any?>
+) {
+  var name: String by map
+  var age: Int by map
+  var id: String by map
+  var available: Boolean by map
+  var coord: Pair<Double, Double> by map
+}
+
+fun main() {
+  val info = mutableMapOf<String, Any?>(
+    "name" to "Bruno Fiat",
+    "age" to 22,
+    "id" to "X97C111",
+    "available" to false,
+    "coord" to Pair(111.93, 1231.12)
+  )
+}
+```
+
+`Map`을 이용한 `위임 프로퍼티`의 값을 `변경`하면, 원본 `Map`의 데이터도 `변경`된다는 점에 유의해야 한다.  
+
+`Map`의 확장 함수로 `프로퍼티 위임`이 가능하도록 `getValue()`와 `setValue()`를 제공하기 때문이다.
+
+```kotlin
+/*
+*  Map의 확장 함수 getValue()와 setValue()를 단순 구현해본 코드
+*
+*/
+
+operator fun MutableMap<String, Any>.getValue(
+  thisRef: Any?, property: Kproperty<*>
+): Any? {
+  return this[property.name]
+}
+
+operator fun MutableMap<String, Any>.setValue(
+  thisRef: Any?, property: KProperty<*>,
+  value: Any
+) {
+  this[property.name] = value
+}
+```
+
+```kotlin
+class Team {
+  var msg = ""
+
+  var captain: String by observable("<0>") {
+    prop, old, new -> 
+    msg += "${prop.name} $old to $new"
+  }
+}
+```
+
+- `Delegates.observable()` 함수는 가변 프로퍼티의 값이 변경되는지 관찰한다.
+- `프로퍼티`가 변경될 때 실행될 동작은 변경 중인 프로퍼티, 프로퍼티의 현재 값, 저장될 새로운 값을 파라미터로 받는 `람다`를 `이용`한다.
+
+```kotlin
+fun aName(
+  property: KProperty<*>,
+  old: String,
+  new: String
+) = if (new.startsWith("A")) {
+  trace("$old -> $new")
+  true
+} else {
+  trace("Name must start with 'A'")
+  false
+}
+
+interface Captain {
+  var captain: String
+}
+
+class TeamWithTraditions : Captain {
+  override var captain: String
+     by Delegates.vetoable("Adam", ::aName)
+}
+
+class TeamWithTraditions2 : Captain {
+  override var captain: String
+    by Delegates.vetoable("Adam") {
+     _, old, new -> 
+     if (new.startsWith("A")) {
+       trace("$old -> $new")
+       true
+     } else {
+       trace("Name must start with 'A'")
+       false
+     }
+   }
+}
+```
+
+- `Delegates.vetoable()`을 사용하면 새 `프로퍼티 값`이 조건을 만족하지 않을 때 프로퍼티가 변경되는 것을 방지할 수 있다.
+- `Delegates.vetoable()`은 프로퍼티의 `초깃값`과 `onChange()` 함수를 파라미터로 받는다.
+
+```kotlin
+class NeverNull {
+  var nn: Int by Delegates.notNull()
+}
+
+fun main() {
+  val non = NeverNull()
+
+  capture {
+    // non.nn에 값을 저장하기 전에 nn을 읽으려고 시도하면 예외가 발생한다.
+    non.nn
+  } eq "IllegalStateException: Property " + 
+    "nn should be initialized before get."
+
+  non.nn = 11
+  non.nn eq 11
+}
+```
+
+- `Delegates.notNull()`는 읽기 전에 꼭 초기화해야 하는 `프로퍼티`를 정의한다.
+
+## 😳 지연 계산 초기화
+
+- `프로퍼티`를 정의하는 시점이나 생성자 안에서 `초깃값`을 저장한다.
+- `프로퍼티`에 접근할 때마다 값을 계산하는 `커스텀 게터`를 정의한다.
+
+`초깃값`을 계산하는 비용이 많이 들지만 `프로퍼티`를 선언하는 시점에 즉시 필요하지 않거나 아예 필요하지 않을 수 있는 경우에 `지연 계산 초기화`가 필요하다.
+
+```kotlin
+// by <프로퍼티 이름> by lazy { 초기화 람다 } 로 가능하다.
+val lazyProperty by lazy { 초기화 코드 }
+```
+
+```kotlin
+val idle: String by lazy {
+  trace("Initializing 'idle'")
+  "I'm never used"
+}
+```
+
+- `lazy 초기화`가 없다면 `var`로 변수를 선언해야 하기 때문에 신뢰성이 떨어지는 문제가 생긴다.
+
+```kotlin
+class LazyInt(val init: () -> Int) {
+  private var helper: Int? = null
+  val value: Int
+    get() {
+      if (helper == null)
+        helper = init()
+      return helper!!
+    }
+}
+
+fun main() {
+  val later = LazyInt {
+    trace("Initializing 'later'")
+    5
+  }
+}
+```
+
+- `지연 계산 프로퍼티`의 초기화의 동작을 코드로 간단히 표현하면 위와 같다.
+
+## 😖 늦은 초기화
+
+- `by lazy()`를 사용하지 않고 별도의 멤버 함수에서 클래스의 `인스턴스`가 생성되었을 때 초기화 할 수 있다.
+
+```kotlin
+class Suitcase : Bag {
+  private var items: String? = null
+  override fun setUp() {
+    items = "socks, jacket, laptop"
+  }
+
+  fun checkSocks(): Boolean = 
+    items?.contains("socks") ?: false
+}
+```
+
+- `items`를 그냥 `String`으로 정의할 수 없기 때문에 초기값을 설정해야 한다.
+- `초기화`를 위해 `빈 문자열` 같은 값을 사용하는 것은 나쁜 방식이다.
+
+```kotlin
+class BetterSuitcase : Bag {
+  lateinit var items: String
+  override fun setUp() {
+    items = "socks, jacket, laptop"
+  }
+  fun checkSocks() = "socks" in items
+}
+```
+
+- `lateinit 프로퍼티`는 안전하게 `null`이 아닌 프로퍼티로 선언할 수 있게 도와준다.
+
+`lateinit`은 모두 적용할 수 있는 것은 아니고 제약사항이 있다.
+
+- `lateinit`은 `var` 프로퍼티만 적용 가능하다.
+- `프로퍼티`의 타입은 `nullable` 타입이 아니어야 한다.
+- `프로퍼티`가 원시 타입의 값이 아니어야 한다.
+- 추상 클래스의 `추상 프로퍼티`나 인스턴스의 `프로퍼티`에는 적용이 불가능하다.
+- `커스텀 게터` 및 `세터`를 지원하는 `프로퍼티`에는 적용이 불가능하다.
+
+```kotlin
+class FaultySuitcase : Bag {
+  lateinit var items: String
+  override fun setUp() {}
+  fun checkSocks() = "socks" in items
+}
+
+fun main() {
+  val suitcase = FaultySuitcase()
+  suitcase.setUp()
+
+  capture {
+    suitcase.setUp()
+  } eq "UninitializedPropertyAccessException" + 
+       ": lateinit property itmes " + 
+       "has not been initialized"
+}
+```
+
+`lateinit 프로퍼티`는 초기화하지 않으면 컴파일 시점에 오류나 경고 메시지가 발생하지 않지만 `런타임`에 예외가 발생한다.
+
+```kotlin
+class WithLate {
+  lateinit var x: String
+  fun status() = "${::x.isInitialized}"
+}
+
+lateinit var y: String
+
+fun main() {
+  trace("${::y.isInitialzied}")
+}
+```
+
+- `lateinit var`를 정의할 수 있지만, 지역 `var`나 `val`에 대한 참조를 허용하지 않기 때문에 `.isInitialized`를 호출할 수 없다.
